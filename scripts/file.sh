@@ -3,6 +3,11 @@ DIR=`dirname $0`
 
 sql_file=${1:-"NOPE"}
 
+u=${2:-$user}
+p=${3:-$pass}
+d=${4:-$db}
+db_urls $u $p $d
+
 if [ -f $sql_file ]; then
   echo loading .sql file: $sql_file
   r="$pg_restore -d ${db_url} < $sql_file"

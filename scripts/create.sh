@@ -6,16 +6,19 @@ DIR=`dirname $0`
 
 u=${1:-$user}
 p=${2:-$pass}
-dbz=${3:-"$db $osm_db"}
+d=${3:-$db}
+db_urls $u $p $d
 
 ## create user (default is user='ott' with pass='ott' -- change in ./base.sh)
 cmd="$psql -c \"CREATE USER ${u} WITH PASSWORD '${p}';\""
 echo $cmd
 eval $cmd
 
-# create ott DB (and formally osm $osm_db)
-for d in $dbz
-do
-  $psql -c "CREATE DATABASE ${d} WITH OWNER ${u};"
-  $psql $d -c "CREATE EXTENSION postgis;"
-done
+# create postgis DB
+cmd="$psql -c \"CREATE DATABASE ${d} WITH OWNER ${u};\""
+echo $cmd
+eval $cmd
+
+cmd="$psql $d -c \"CREATE EXTENSION postgis;\""
+echo $cmd
+eval $cmd
