@@ -1,9 +1,10 @@
-user=${1:-"ott"}
-pass=${1:-"ott"}
-def_db=${3:-"postgres"}
-db=${4:-"ott"}
-osm_db=${5:-"osm"}
-db_url=postgresql://$user:$pass@127.0.0.1:5432/$db
+user=${PG_USER:-"ott"}
+pass=${PG_PASS:-"ott"}
+def_db=${PG_DEF:-"postgres"}
+db=${PG_DB:-"ott"}
+osm_db=${PG_OSM:-"osm"}
+db_path=postgresql://$user:$pass@127.0.0.1:5432
+db_url=$db_path/$db
 
 docker_exe="docker exec -i -u $def_db"
 psql_term=${psql:-"$docker_exe -it db psql"}

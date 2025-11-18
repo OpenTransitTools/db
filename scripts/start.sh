@@ -13,7 +13,7 @@ echo $PWD
 date
 
 docker compose down
-sleep 2
+sleep 6
 
 if [ $PRUNE == "TRUE" ]; then
   docker system prune -a -f
