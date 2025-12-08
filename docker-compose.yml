@@ -1,5 +1,3 @@
-volumes:
-  geo-db-data:
 
 services:
   db:
@@ -8,6 +6,7 @@ services:
     hostname: db
     volumes:
       - ${PWD}/geo-db-data:/var/lib/postgresql
+      - ./config/pg_hba.conf.template:/etc/postgresql/17/main/pg_hba.conf.template
     ports:
       - ${POSTGRES_PORT}:5432
     environment:
@@ -23,3 +22,7 @@ services:
     restart: on-failure
     healthcheck:
       test: "PGPASSWORD=${POSTGRES_PASS} pg_isready -h 127.0.0.1 -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+
+volumes:
+  geo-db-data:
+
