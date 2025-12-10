@@ -115,10 +115,10 @@
 # maintenance (custom daily cronjobs, replication, and similar tasks).
 #
 # Database administrative login by Unix domain socket
-# Allow passwordless access for geoserver from localhost
+# Allow passwordless access for geoserve from localhost
 
 # ==========================================
-# Trusted users: geoserver and postgres
+# Trusted users: geoserve and postgres
 # ==========================================
 
 # Local socket access (inside container) - trust
@@ -126,8 +126,8 @@ local   all             geoserve                               trust
 local   all             postgres                                trust
 
 # IPv4 from host or container (loopback or bridge)
-host    all             geoserver       127.0.0.1/32            trust
-host    all             geoserver       172.0.0.0/8             trust
+host    all             geoserve       127.0.0.1/32            trust
+host    all             geoserve       172.0.0.0/8             trust
 
 host    all             postgres        127.0.0.1/32            trust
 host    all             postgres        172.0.0.0/8             trust

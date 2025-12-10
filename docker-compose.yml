@@ -22,6 +22,21 @@ services:
     restart: on-failure
     healthcheck:
       test: "PGPASSWORD=${POSTGRES_PASS} pg_isready -h 127.0.0.1 -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+    networks:
+      - postgis-net
+
+  osm-ogr2ogr:
+    container_name: osm-ogr2ogr
+    image: osm-ogr2ogr:latest
+    build:
+      context: ./
+      dockerfile: Ogr2Ogr-Dockerfile
+    networks:
+      - postgis-net
+
+networks:
+  postgis-net:
+    driver: bridge
 
 volumes:
   geo-db-data:
