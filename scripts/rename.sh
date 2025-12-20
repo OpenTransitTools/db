@@ -1,7 +1,7 @@
 DIR=`dirname $0`
 . $DIR/base.sh
 
-cd $GTFS_DIR
+cd $HOME/gtfs/
 for x in *-did_scp
 do
   cmd="mv $x ${x%%-did_scp}"

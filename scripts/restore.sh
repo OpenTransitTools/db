@@ -1,7 +1,7 @@
 RESTDIR=`dirname $0`
 . $RESTDIR/base.sh
 
-RENAME=${1-"TRUE"}
+RENAME=${1-"TRUEx"}
 
 
 function restore_file_types() {
@@ -11,7 +11,7 @@ function restore_file_types() {
   for x in *.${ext}
   do
     echo restore backup: $x
-    r="$pg_restore -d ${db_url}${db} < $x"
+    r="$pg_restore -d ${db_url} < $x"
     echo $r
     eval $r
 
