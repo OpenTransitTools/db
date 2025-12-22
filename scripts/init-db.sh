@@ -15,8 +15,8 @@ USER_EXISTS=$(psql -U postgres -d postgres -tAc "SELECT 1 FROM pg_roles WHERE ro
 if [ "$USER_EXISTS" = "1" ]; then
     echo "User 'tmpublic' already exists, skipping..."
 else
-    echo "Creating user 'tmpublic' with password 'junk'..."
-    psql -U postgres -d postgres -c "CREATE USER tmpublic WITH PASSWORD 'junk';"
+    echo "Creating user 'tmpublic' "
+    psql -U postgres -c "CREATE USER tmpublic WITH PASSWORD 'tmpublic';"
 fi
 
 DATABASES=("osm" "trimet")
