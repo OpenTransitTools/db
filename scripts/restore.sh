@@ -6,7 +6,7 @@ source_base() {
 source_base
 
 DATA_DIR=${1:-"."}
-RENAME=${2-"TRUEx"}
+RENAME=${2-"TRUE"}
 
 
 function restore_file_types() {
