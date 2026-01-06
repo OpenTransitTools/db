@@ -11,11 +11,14 @@ date
 
 # (re)start postgis
 cd $REDIR/../
-echo $PWD
-docker compose down; sleep 2
+echo "-> $PWD (should be in the db repo directory)"
+docker compose down
+sleep 2
 
 if [ $DOC_PRUNE == "TRUE" ]; then
-  docker system prune -a -f; sleep 2
+  docker system prune -a -f
+  sleep 2
 fi
 
+new_db_dir
 docker compose up -d >> $DB_LOG 2>&1

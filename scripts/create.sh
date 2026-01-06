@@ -1,6 +1,6 @@
-##
-## crete OTT spatial db for OTT
-##
+#
+# crete OTT spatial db for OTT
+#
 DIR=`dirname $0`
 . $DIR/base.sh
 
@@ -10,7 +10,7 @@ echo $cmd
 eval $cmd
 
 # create ott DB (and formally osm $osm_db)
-for d in $db $osm
+for d in $db
 do
   $psql -c "CREATE DATABASE ${d} WITH OWNER ${user};"
   $psql $d -c "CREATE EXTENSION postgis;"

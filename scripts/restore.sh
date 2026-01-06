@@ -1,7 +1,12 @@
 RESTDIR=`dirname $0`
-. $RESTDIR/base.sh
+source_base() {
+  # dont send cmdline params down to base.sh
+  source $RESTDIR/base.sh
+}
+source_base
 
-RENAME=${1-"TRUEx"}
+DATA_DIR=${1:-"."}
+RENAME=${2-"TRUEx"}
 
 
 function restore_file_types() {
@@ -27,8 +32,10 @@ function restore_file_types() {
 # run load from cmdline. can be included in another script
 # without the restore cmds below if that script defines a $SERVERS var
 if [ -z "${SERVERS+xxx}" ]; then
+  cd $DATA_DIR
   echo "LOADING db with files (.schema, .sql, .views) from folder $PWD"
   restore_file_types schema
   restore_file_types sql
   restore_file_types views
+  cd -
 fi
