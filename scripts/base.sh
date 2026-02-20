@@ -1,8 +1,8 @@
-user=${1:-"ott"}
-pass=${2:-"ott"}
-def_db=${3:-"postgres"}
-db=${4:-"ott"}
-osm_db=${5:-"osm"}
+user=${DB_USER:-"ott"}
+pass=${DB_PASS:-"ott"}
+def_db=${DB_DEF:-"postgres"}
+db=${DB_NAME:-"ott"}
+osm_db=${DB_OSM:-"osm"}
 db_url="postgresql://$user:$pass@127.0.0.1:5432"
 
 docker_exe="docker exec -i -u $def_db"
