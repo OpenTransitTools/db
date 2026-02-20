@@ -21,6 +21,10 @@ function new_db_dir() {
   # note: cd into the root of this project to delete the pg data dir
   rm -rf $pg_data_dir > /dev/null 2>&1
   date=$(date '+%Y%m%d')
+
   mv $pg_data_dir "z_deleteme_${date}"
-  mkdir -p $pg_data_dir/17
+  mkdir -p $pg_data_dir/17/main
+  chmod 775 $pg_data_dir
+  chmod 775 $pg_data_dir/17/
+  chmod 775 $pg_data_dir/17/main
 }
