@@ -1,5 +1,5 @@
 #
-# pg_isready - is db ready to talk?
+# install postgis in the container to get shp2pgsql
 #
 IRDIR=`dirname $0`
 . $IRDIR/base.sh
