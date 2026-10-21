@@ -8,6 +8,7 @@ services:
     hostname: db
     volumes:
       - ${PWD}/geo-db-data:/var/lib/postgresql
+      - /tmp:/shps
     ports:
       - ${POSTGRES_PORT}:5432
     environment:
@@ -24,6 +25,9 @@ services:
       options:
         max-size: "120m"
         max-file: "8"
+    # installs postgis client utilities (shp2pgsql) on container startup
+    entrypoint: >
+      sh -c "apt-get update && apt-get install -y postgis && /scripts/docker-entrypoint.sh"
     restart: always
     healthcheck:
       test: "PGPASSWORD=${POSTGRES_PASS} pg_isready -h 127.0.0.1 -U ${POSTGRES_USER} -d ${POSTGRES_DB}"

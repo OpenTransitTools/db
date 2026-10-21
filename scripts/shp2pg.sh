@@ -4,12 +4,12 @@
 IRDIR=`dirname $0`
 . $IRDIR/base.sh
 
-# include url 
-cmd=$*
+cmdline=$*
 if [ "$1" == "" ]; then
-  cmd="-?"
+  cmdline="-?"
 elif [ "$2" == "" ]; then
-  cmd="$1 db url"
+  cmdline="$1 $db current.$file_name_table_blah"
 fi
 
-$pg_shp $cmd
+echo "$pg_shp $cmdline"
+$pg_shp $cmdline
