@@ -17,12 +17,12 @@ pg_shp=${pg_shp:-"$docker_exe db shp2pgsql"}
 pg_data_dir="geo-db-data"
 
 # creates a clean / postgres data directory in the geo project (done so docker doesn't make it root)
+# note: cd into the root of this project to backup, then delete the pg data dir
 function new_db_dir() {
-  # note: cd into the root of this project to delete the pg data dir
-  rm -rf $pg_data_dir > /dev/null 2>&1
   date=$(date '+%Y%m%d')
+  mv $pg_data_dir "${pg_data_dir}_${date}"
+  rm -rf "${pg_data_dir}"
 
-  mv $pg_data_dir "z_deleteme_${date}"
   mkdir -p $pg_data_dir/17/main
   chmod 775 $pg_data_dir
   chmod 775 $pg_data_dir/17/

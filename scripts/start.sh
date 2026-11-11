@@ -24,7 +24,7 @@ if [ $NO_PRUNE != "TRUE" ]; then
 fi
 
 if [ $NEW_DATA_DIR == "TRUE" ]; then
-  echo "new data dir: rm -rf $PWD/new_db_dir"
+  echo "new data dir: ${pg_data_dir}"
   new_db_dir
 fi
 
