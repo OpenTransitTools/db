@@ -20,7 +20,7 @@ fi
 
 # create new database
 if [ "$new_db" != " " ]; then
-  cmd="$psql -c \"DROP DATABASE ${new_db};\""
+  cmd="$psql -c \"DROP DATABASE ${new_db} WITH FORCE;\""
   echo $cmd
   eval $cmd
 

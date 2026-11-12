@@ -8,7 +8,7 @@ services:
     hostname: db
     volumes:
       - ${PWD}/geo-db-data:/var/lib/postgresql
-      - /tmp:/shps
+      - ${HOME}/shp:/shp
     ports:
       - ${POSTGRES_PORT}:5432
     environment:

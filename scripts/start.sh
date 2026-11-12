@@ -4,8 +4,8 @@
 REDIR=`dirname $0`
 . $REDIR/base.sh
 
-NO_PRUNE=${1:-"TRUE"}
-NEW_DATA_DIR=${2:-"TRUE"}
+NEW_DATA_DIR=${1:-"TRUE"}
+NO_PRUNE=${2:-"TRUE"}
 DB_LOG=${3:-"log.out"}
 
 date
@@ -24,8 +24,10 @@ if [ $NO_PRUNE != "TRUE" ]; then
 fi
 
 if [ $NEW_DATA_DIR == "TRUE" ]; then
-  echo "new data dir: ${pg_data_dir}"
+  echo "new data dir: rm -rf $PWD/new_db_dir"
   new_db_dir
 fi
 
+mkdir -p $HOME/shp  # do not delete ~/shp, as it's a docker volumn for shp2pgsql
 docker compose up -d >> $DB_LOG 2>&1
+
