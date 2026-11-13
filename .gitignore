@@ -6,9 +6,9 @@ z
 *.out
 *.log
 *.txt
-**/geoserver-data
-**/geo-db-data
-**/data_dir
+**/geoserver-data*
+**/geo-db-data*
+**/data_dir*
 bin
 update.sh
 *OLD

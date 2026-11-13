@@ -27,7 +27,26 @@ services:
         max-file: "8"
     # installs postgis client utilities (shp2pgsql) on container startup
     entrypoint: >
-      sh -c "apt-get update && apt-get install -y postgis && /scripts/docker-entrypoint.sh"
+      sh -c "/scripts/docker-entrypoint.sh"
     restart: always
     healthcheck:
       test: "PGPASSWORD=${POSTGRES_PASS} pg_isready -h 127.0.0.1 -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+
+  pg-tools:
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM postgis/postgis:${POSTGRES_MAJOR_VERSION}-${POSTGIS_MAJOR_VERSION}.${POSTGIS_MINOR_RELEASE}-alpine
+        RUN apk add --no-cache libintl
+    volumes:
+      - ${HOME}/shp:/shp
+    depends_on:
+      - db
+
+  gdal-tools:
+    image: ghcr.io/osgeo/gdal:ubuntu-small-latest
+    profiles: ["tools"]
+    volumes:
+      - ${HOME}/shp:/shp
+    depends_on:
+      - db

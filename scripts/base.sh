@@ -12,19 +12,21 @@ psql=${psql:-"$docker_exe db psql"}
 pg_isready=${pg_isready:-"$docker_exe db pg_isready"}
 pg_restore=${pg_restore:-"$docker_exe db psql"}
 pg_dump=${pg_dump:-"$docker_exe db pg_dump"}
-pg_shp=${pg_shp:-"docker exec -i db shp2pgsql"}
+
+pg_shp=${pg_shp:-"docker compose -f $HOME/db/docker-compose.yml run --rm --no-deps -T pg-tools sh -c"}
 
 pg_data_dir="geo-db-data"
 
 # creates a clean / postgres data directory in the geo project (done so docker doesn't make it root)
+# note: cd into the root of this project to delete the pg data dir
 function new_db_dir() {
-  # note: cd into the root of this project to delete the pg data dir
-  rm -rf $pg_data_dir > /dev/null 2>&1
   date=$(date '+%Y%m%d')
 
-  mv $pg_data_dir "z_deleteme_${date}"
+  mv $pg_data_dir "${pg_data_dir}_${date}" > /dev/null 2>&1
+  rm -rf $pg_data_dir > /dev/null 2>&1
   mkdir -p $pg_data_dir/17/main
+  mkdir -p $pg_data_dir/18/main
   chmod 775 $pg_data_dir
-  chmod 775 $pg_data_dir/17/
-  chmod 775 $pg_data_dir/17/main
+  chmod 775 $pg_data_dir/*
+  chmod 775 $pg_data_dir/*/*
 }
