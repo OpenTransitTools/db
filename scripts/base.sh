@@ -24,8 +24,7 @@ function new_db_dir() {
 
   mv $pg_data_dir "${pg_data_dir}_${date}" > /dev/null 2>&1
   rm -rf $pg_data_dir > /dev/null 2>&1
-  mkdir -p $pg_data_dir/17/main
-  mkdir -p $pg_data_dir/18/main
+  mkdir -p  $pg_data_dir/18/main
   chmod 775 $pg_data_dir
   chmod 775 $pg_data_dir/*
   chmod 775 $pg_data_dir/*/*
