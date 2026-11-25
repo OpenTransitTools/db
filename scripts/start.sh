@@ -28,5 +28,4 @@ if [ $NEW_DATA_DIR == "TRUE" ]; then
   new_db_dir
 fi
 
-mkdir -p $HOME/shp  # do not delete ~/shp, as it's a docker volumn for shp2pgsql
 docker compose up -d $build >> $DB_LOG 2>&1

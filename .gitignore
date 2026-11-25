@@ -12,3 +12,4 @@ z
 bin
 update.sh
 *OLD
+files/**

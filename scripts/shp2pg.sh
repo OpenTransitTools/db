@@ -9,18 +9,19 @@ IRDIR=`dirname $0`
 . $IRDIR/base.sh
 
 if [ "$1" == "" ]; then
-  echo "$pg_shp \"shp2pgsql -f id -s 2913:4326 /shp/city.shp layers.city\""
+  echo "$pg_shp \"shp2pgsql -f id -s 2913:4326 /data/city.shp layers.city\""
 else
   # fix cmdline params for docker volumn, which is expecting files to be in the '/shp' folder
   # eg: ~/shp/blah or shp/blah or $HOME/shp/blah converts to '/shp/blah' for docker
   args=()
   for arg in "$@"; do
     # Only rewrite arguments containing 'shp'
-    if [[ "$arg" == *shp* ]]; then
+    if [[ "$arg" == *shp* || "$arg" == *data* ]]; then
       arg="${arg#"$HOME"}"
       arg="${arg#\$HOME}"
       arg="${arg#\~}"
       arg="/${arg#/}"
+      arg="${arg/\/shp\//\/data\/}"
     fi
     args+=("$arg")
   done
