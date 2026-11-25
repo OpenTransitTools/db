@@ -10,7 +10,7 @@ psql_term=${psql:-"$docker_exe -it db psql"}
 psql_ott=${psql:-"$docker_exe -e PGUSER=$user -e PGPASSWORD=$pass db psql"}
 psql=${psql:-"$docker_exe db psql"}
 pg_isready=${pg_isready:-"$docker_exe db pg_isready"}
-pg_restore=${pg_restore:-"$docker_exe db psql"}
+pg_restore=${pg_restore:-"$docker_exe db pg_restore"}
 pg_dump=${pg_dump:-"$docker_exe db pg_dump"}
 
 pg_shp=${pg_shp:-"docker compose -f $HOME/db/docker-compose.yml run --rm --no-deps -T pg-tools sh -c"}

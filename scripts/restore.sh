@@ -16,7 +16,7 @@ function restore_file_types() {
   for x in *.${ext}
   do
     echo restore backup: $x
-    r="$pg_restore -d ${db_url} < $x"
+    r="$psql -d ${db_url} < $x"
     echo $r
     eval $r
 
